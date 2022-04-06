@@ -6,30 +6,20 @@ export default {
     return {
       message: "Add user",
       username: 1,
-      show: true,
-      info: "",
+      show: false,
+      info: {},
       name: "",
       address: "",
+      id: "",
     };
   },
   methods: {
-    click() {
+    click(id) {
+      console.log(id);
+      this.show = true;
       axios
-        .get("http://localhost:8080/users/")
+        .get("http://localhost:8080/users/" + id)
         .then((response) => (this.info = response.data));
-    },
-    handlclick(name, address) {
-      axios
-        .post("http://localhost:8080/users/add", {
-          name: name,
-          address: address,
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     },
   },
   mounted() {},
@@ -38,14 +28,16 @@ export default {
 
 <template>
   <div class="about">
-    <button v-on:click="click">
-      <span>show users</span>
+    <br />
+    name:
+    <input v-model="id" type="text" ref="id" placeholder="id" />
+    <br />
+    <button v-on:click="click(id)">
+      <span>show users by id</span>
     </button>
     <div>
       <div v-if="show" class="article">
-        <div v-for="item in info" :key="item.id">
-          <p>{{ item.id }} : {{ item.name }} + {{ item.address }}</p>
-        </div>
+        <p>{{ info.id }} : {{ info.name }} + {{ info.address }}</p>
       </div>
     </div>
   </div>

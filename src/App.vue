@@ -1,11 +1,19 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app dark>
+      <div class="d-flex align-center mr-2">
+        <v-avatar color="primary" size="80">GESTION USERS</v-avatar>
+      </div>
+      <v-btn to="/" text>Add</v-btn>
+      <v-btn to="/Update" text>Update</v-btn>
+      <v-btn to="/Delete" text>Delete</v-btn>
+      <v-btn to="/ShowUsers" text>ShowUsers</v-btn>
+      <v-btn to="/DashboardView" text>DashboardView</v-btn>
+    </v-app-bar>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
 <style lang="scss">

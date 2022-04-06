@@ -4,28 +4,20 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      message: "Add user",
+      message: "Delete user",
       username: 1,
       show: true,
       info: "",
-      user: {
-        name: "",
-        address: "",
-      },
+      id: "",
     };
   },
   methods: {
-    ...mapActions(["addUserAction"]),
+    ...mapActions(["deleteUserAction"]),
   },
   computed: {
     ...mapGetters(["getUsers"]),
   },
-  mounted() {
-    /*  this.addUserAction().then(() => {
-      //  this.getUsers;
-      console.log("users", this.getUsers);
-    }); */
-  },
+  mounted() {},
 };
 </script>
 
@@ -33,28 +25,15 @@ export default {
   <div id="app">
     <header>
       <h1>{{ message }}</h1>
+
       <div class="crud">
-        <div class="add">
-          name:
-          <input
-            v-model="user.name"
-            type="text"
-            ref="name"
-            placeholder="name"
-          />
+        <div class="delete">
+          id:
+          <input v-model="id" type="text" ref="id" placeholder="id" />
           <br />
+
           <br />
-          address
-          <input
-            v-model="user.address"
-            type="text"
-            ref="address"
-            placeholder="address"
-          />
-          <br />
-          <br />
-          <br />
-          <button @click="addUserAction(user)">Add user</button>
+          <button @click="deleteUserAction(id)">Delete user</button>
         </div>
       </div>
       <br />
