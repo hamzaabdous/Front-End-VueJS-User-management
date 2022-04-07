@@ -17,7 +17,9 @@ export default {
   computed: {
     ...mapGetters(["getUsers"]),
   },
-  mounted() {},
+  mounted() {
+    document.title = "Delete page";
+  },
 };
 </script>
 

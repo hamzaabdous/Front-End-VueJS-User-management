@@ -32,7 +32,9 @@ export default {
         });
     },
   },
-  mounted() {},
+  mounted() {
+    document.title = "List users";
+  },
 };
 </script>
 

@@ -22,7 +22,9 @@ export default {
         .then((response) => (this.info = response.data));
     },
   },
-  mounted() {},
+  mounted() {
+    document.title = "List users";
+  },
 };
 </script>
 

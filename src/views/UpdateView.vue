@@ -44,7 +44,9 @@ export default {
   computed: {
     ...mapGetters(["getUsers"]),
   },
-  mounted() {},
+  mounted() {
+    document.title = "Update page";
+  },
 };
 </script>
 

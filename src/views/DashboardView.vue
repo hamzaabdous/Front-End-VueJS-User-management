@@ -107,6 +107,8 @@ export default {
     },
   }),
   mounted() {
+    document.title = "Dashboard";
+
     this.initialize();
   },
   computed: {

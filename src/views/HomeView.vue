@@ -21,6 +21,8 @@ export default {
     ...mapGetters(["getUsers"]),
   },
   mounted() {
+    document.title = "Add page";
+
     /*  this.addUserAction().then(() => {
       //  this.getUsers;
       console.log("users", this.getUsers);
@@ -54,7 +56,13 @@ export default {
           <br />
           <br />
           <br />
-          <button @click="addUserAction(user)">Add user</button>
+          <v-btn
+            @click="addUserAction(user)"
+            color="primary"
+            elevation="2"
+            small
+            >Add user</v-btn
+          >
         </div>
       </div>
       <br />
