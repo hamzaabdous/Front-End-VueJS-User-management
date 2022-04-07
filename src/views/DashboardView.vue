@@ -93,6 +93,7 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     users: [],
+    isAdd: true,
     editedIndex: -1,
     editedItem: {
       id: 0,
@@ -132,7 +133,12 @@ export default {
         console.log(this.users);
       });
     },
-    ...mapActions(["setUsersAction", "editUserAction", "deleteUserAction"]),
+    ...mapActions([
+      "setUsersAction",
+      "editUserAction",
+      "deleteUserAction",
+      "addUserAction",
+    ]),
 
     editItem(item) {
       this.editedIndex = this.users.indexOf(item) + 1;
@@ -147,7 +153,6 @@ export default {
     deleteItemConfirm() {
       this.deleteUserAction(this.editedIndex).then(() => {
         this.users = this.getUsers;
-        console.log(this.users);
       });
       this.closeDelete();
     },
@@ -158,10 +163,19 @@ export default {
       this.dialogDelete = false;
     },
     save(editedItem) {
-      this.editUserAction(editedItem).then(() => {
-        this.users = this.getUsers;
-        console.log(this.users);
-      });
+      if (this.editedIndex == -1) {
+        console.log("add");
+        this.addUserAction(editedItem).then(() => {
+          this.users = [...this.getUsers];
+        });
+      } else {
+        console.log("edite");
+
+        this.editUserAction(editedItem).then(() => {
+          this.users = this.getUsers;
+        });
+      }
+
       this.close();
     },
   },

@@ -41,6 +41,7 @@ const usersModule = {
           address: user.address,
         })
           .then((response) => {
+            console.log("res add ", response);
             commit("ADD_USER", response.data);
             resolve(response.data);
           })
@@ -54,7 +55,7 @@ const usersModule = {
       return new Promise((resolve, reject) => {
         CustomizedAxios.post("users/delete/" + id)
           .then((response) => {
-            commit("DELETE_USER", response.data);
+            commit("DELETE_USER", id);
             resolve(response.data);
           })
           .catch((error) => {
@@ -70,7 +71,6 @@ const usersModule = {
           address: user.address,
         })
           .then((response) => {
-            console.log("res ", response);
             commit("EDIT_USER", response.data);
             resolve(response.data);
           })
