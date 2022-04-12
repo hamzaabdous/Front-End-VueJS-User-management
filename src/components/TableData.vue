@@ -1,8 +1,8 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="users"
-    sort-by="item.id"
+    :items="{ users }"
+    sort-by="users"
     class="elevation-1"
   >
     <template v-slot:top>
@@ -79,107 +79,9 @@
     </template>
   </v-data-table>
 </template>
+
 <script>
-import { mapActions, mapGetters } from "vuex";
-
-export default {
-  data: () => ({
-    dialog: false,
-    dialogDelete: false,
-    headers: [
-      { text: "id", align: "start", value: "id", sortable: true },
-      { text: "name", value: "name", sortable: true },
-      { text: "address", value: "address", sortable: true },
-      { text: "Actions", value: "actions", sortable: false },
-    ],
-    users: [],
-    isAdd: true,
-    editedIndex: -1,
-    editedItem: {
-      id: 0,
-      name: "",
-      address: "",
-    },
-    defaultItem: {
-      id: 0,
-      name: "",
-      address: "",
-    },
-  }),
-  mounted() {
-    document.title = "Dashboard";
-
-    this.initialize();
-  },
-  computed: {
-    formTitle() {
-      return this.editedIndex === -1 ? "New Item" : "Edit Item";
-    },
-    ...mapGetters(["getUsers"]),
-  },
-  watch: {
-    dialog(val) {
-      val || this.close();
-    },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    },
-  },
-  created() {
-    this.initialize();
-  },
-  methods: {
-    initialize() {
-      this.setUsersAction().then(() => {
-        this.users = [...this.getUsers];
-        console.log(this.users);
-      });
-    },
-    ...mapActions([
-      "setUsersAction",
-      "editUserAction",
-      "deleteUserAction",
-      "addUserAction",
-    ]),
-
-    editItem(item) {
-      this.editedIndex = this.users.indexOf(item) + 1;
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-    deleteItem(item) {
-      this.editedIndex = item.id;
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
-    },
-    deleteItemConfirm() {
-      this.deleteUserAction(this.editedIndex).then(() => {
-        this.users = this.getUsers;
-      });
-      this.closeDelete();
-    },
-    close() {
-      this.dialog = false;
-    },
-    closeDelete() {
-      this.dialogDelete = false;
-    },
-    save(editedItem) {
-      if (this.editedIndex == -1) {
-        console.log("add");
-        this.addUserAction(editedItem).then(() => {
-          this.users = [...this.getUsers];
-        });
-      } else {
-        console.log("edite");
-
-        this.editUserAction(editedItem).then(() => {
-          this.users = this.getUsers;
-        });
-      }
-
-      this.close();
-    },
-  },
-};
+export default {};
 </script>
+
+<style></style>

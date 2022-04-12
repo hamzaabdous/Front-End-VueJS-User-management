@@ -54,24 +54,5 @@ export default {
 </template>
 
 <style>
-h1 {
-  color: rgb(255, 118, 77);
-}
-.crud {
-  background-color: rgb(255, 125, 125);
-  text-align: center;
-}
-.add {
-  padding: 20px;
-}
-.container {
-  background-color: antiquewhite;
-}
-.article {
-  background-color: rgb(248, 86, 86);
-  text-align: center;
-  font-weight: bold;
-  font-size: 20px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+@import "./style/Test.css";
 </style>

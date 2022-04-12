@@ -1,20 +1,56 @@
 <template>
-  <v-app>
-    <v-app-bar app dark>
-      <div class="d-flex align-center mr-2">
-        <v-avatar color="primary" size="80">GESTION USERS</v-avatar>
-      </div>
-      <v-btn to="/" text>Add</v-btn>
-      <v-btn to="/Update" text>Update</v-btn>
-      <v-btn to="/Delete" text>Delete</v-btn>
-      <v-btn to="/ShowUsers" text>ShowUsers</v-btn>
-      <v-btn to="/DashboardView" text>DashboardView</v-btn>
+  <v-card class="mx-auto overflow-hidden" height="765">
+    <v-app-bar color="#A6CEE3">
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Tanger Alliance</v-toolbar-title>
     </v-app-bar>
-    <v-main>
+
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list style="padding: 0px; align-items: center" nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <img src="./assets/TangerAlliance.png" alt="logo" height="200" />
+          <v-list dense nav class="sideBar">
+            <v-list-item
+              v-for="item in listDrawerRouter"
+              :key="item.id"
+              link
+              :to="item.ROUTE"
+              class="sideBarItem"
+            >
+              <v-list-item class="test">
+                <v-icon>{{ item.name }}</v-icon>
+              </v-list-item>
+            </v-list-item>
+          </v-list>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app>
       <router-view />
-    </v-main>
-  </v-app>
+    </v-app>
+  </v-card>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      drawer: true,
+      listDrawerRouter: [
+        { id: 1, name: "Add", ROUTE: "/" },
+        { id: 2, name: "Update", ROUTE: "/Update" },
+        { id: 3, name: "Delete", ROUTE: "/Delete" },
+        { id: 4, name: "Show All", ROUTE: "/ShowUsers" },
+        { id: 5, name: "Dashboard", ROUTE: "/DashboardView" },
+      ],
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
